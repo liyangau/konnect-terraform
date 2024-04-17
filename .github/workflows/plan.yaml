@@ -1,6 +1,15 @@
 name: Create terraform plan
 
-on: [pull_request]
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**/README.md'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -13,6 +22,8 @@ jobs:
     env:
       TF_VAR_system_token: ${{ secrets.KONNECT_AUTH_TOKEN }}
       TF_VAR_exclude_mesh_control_plane: true
+      TF_VAR_cp_region: au
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
