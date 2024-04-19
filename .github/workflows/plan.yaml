@@ -32,7 +32,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
-          TF_VAR_system_token: ${{ secrets.KONNECT_AUTH_TOKEN }}
+          TF_VAR_system_token: ${{ secrets.KONNECT_SYSTEM_TOKEN }}
           TF_VAR_cp_region: "au"
           TF_VAR_exclude_mesh_control_plane: "true"
 
