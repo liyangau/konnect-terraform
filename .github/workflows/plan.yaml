@@ -1,6 +1,5 @@
 name: Create terraform plan
 
-
 on:
   pull_request:
     branches:
@@ -8,7 +7,7 @@ on:
     paths-ignore:
       - '**/README.md'
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows to run this workflow manually
   workflow_dispatch:
 
 permissions:
@@ -21,8 +20,6 @@ jobs:
     name: Create a plan for my konnect terraform module
     env:
       TF_VAR_system_token: ${{ secrets.KONNECT_AUTH_TOKEN }}
-      TF_VAR_exclude_mesh_control_plane: true
-      TF_VAR_cp_region: au
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
@@ -32,3 +29,7 @@ jobs:
         uses: actions/checkout@v4
       - name: terraform plan
         uses: dflook/terraform-plan@v1
+        with:
+          variables: |
+            cp_region: au
+            exclude_mesh_control_plane: true
