@@ -1,11 +1,11 @@
 output "tf_cp_config" {
-  value = konnect_gateway_control_plane.tf-cp.config
+  value = module.control-planes.tf_cp.config
 }
 
 output "tf_k8s_cp_config" {
-  value = konnect_gateway_control_plane.tf-k8s-cp.config
+  value = module.control-planes.tf_k8s_cp.config
 }
 
 output "portal_domain" {
-  value = konnect_portal.my_portal.default_domain
+  value = module.dev-portal.portal.default_domain
 }

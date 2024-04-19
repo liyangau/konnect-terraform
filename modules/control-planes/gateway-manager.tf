@@ -1,4 +1,4 @@
-resource "konnect_gateway_control_plane" "tf-cp" {
+resource "konnect_gateway_control_plane" "tf_cp" {
   name         = "tf-cp"
   description  = "This is the first control plane created by terraform"
   cluster_type = "CLUSTER_TYPE_CONTROL_PLANE"
@@ -10,7 +10,7 @@ resource "konnect_gateway_control_plane" "tf-cp" {
   }
 }
 
-resource "konnect_gateway_control_plane" "tf-k8s-cp" {
+resource "konnect_gateway_control_plane" "tf_k8s_cp" {
   name         = "tf-k8s-cp"
   description  = "This is the K8S control plane created by terraform"
   cluster_type = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
@@ -21,7 +21,7 @@ resource "konnect_gateway_control_plane" "tf-k8s-cp" {
     provisioner = "terraform"
   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }

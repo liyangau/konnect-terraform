@@ -11,8 +11,8 @@ resource "konnect_api_product_version" "httpbin_v1" {
   api_product_id = konnect_api_product.httpbin.id
   name           = "v1"
   gateway_service = {
-    control_plane_id = konnect_gateway_control_plane.tf-cp.id
-    id               = konnect_gateway_service.httpbin.id
+    control_plane_id = var.control_plane_tf_cp.id
+    id               = var.gateway_services_httpbin.id
   }
 }
 
@@ -29,7 +29,7 @@ resource "konnect_api_product_version" "echo_v1" {
   api_product_id = konnect_api_product.echo.id
   name           = "v1"
   gateway_service = {
-    control_plane_id = konnect_gateway_control_plane.tf-cp.id
-    id               = konnect_gateway_service.echo.id
+    control_plane_id = var.control_plane_tf_cp.id
+    id               = var.gateway_services_echo.id
   }
 }

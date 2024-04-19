@@ -37,9 +37,9 @@ resource "konnect_portal" "my_portal" {
   rbac_enabled                         = false
   default_application_auth_strategy_id = konnect_application_auth_strategy.keyauth.id
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 data "konnect_portal_list" "my_portallist" {

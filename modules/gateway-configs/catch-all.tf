@@ -4,12 +4,12 @@ resource "konnect_gateway_route" "catch_all" {
 
   strip_path = false
 
-  control_plane_id = konnect_gateway_control_plane.tf-cp.id
+  control_plane_id = var.control_plane_tf_cp.id
 }
 
 resource "konnect_gateway_plugin_request_termination" "catch_all_terminate" {
   enabled          = true
-  control_plane_id = konnect_gateway_control_plane.tf-cp.id
+  control_plane_id = var.control_plane_tf_cp.id
   route = {
     id = konnect_gateway_route.catch_all.id
   }
