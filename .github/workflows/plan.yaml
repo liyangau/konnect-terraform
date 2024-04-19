@@ -34,7 +34,7 @@ jobs:
           AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
           TF_VAR_system_token: ${{ secrets.KONNECT_AUTH_TOKEN }}
           TF_VAR_cp_region: "au"
-          TF_VAR_exclude_mesh_control_plane: true
+          TF_VAR_exclude_mesh_control_plane: "true"
 
       - name: Upload Terraform Plan out as artifact
         uses: actions/upload-artifact@v4
