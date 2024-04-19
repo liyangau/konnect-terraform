@@ -1,5 +1,5 @@
 resource "konnect_gateway_control_plane" "tf_cp" {
-  name         = "tf-cp"
+  name         = "dev"
   description  = "This is the first control plane created by terraform"
   cluster_type = "CLUSTER_TYPE_CONTROL_PLANE"
   auth_type    = "pki_client_certs"
@@ -11,7 +11,7 @@ resource "konnect_gateway_control_plane" "tf_cp" {
 }
 
 resource "konnect_gateway_control_plane" "tf_k8s_cp" {
-  name         = "tf-k8s-cp"
+  name         = "home-cluster"
   description  = "This is the K8S control plane created by terraform"
   cluster_type = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
   auth_type    = "pki_client_certs"
@@ -21,7 +21,7 @@ resource "konnect_gateway_control_plane" "tf_k8s_cp" {
     provisioner = "terraform"
   }
 
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
+  lifecycle {
+    prevent_destroy = true
+  }
 }

@@ -17,6 +17,23 @@ resource "konnect_gateway_key_auth" "alice_keyauth" {
   control_plane_id = var.control_plane_tf_cp.id
 }
 
+
+variable "alice_credentials" {
+  type = object({
+    api_key  = string
+    username = string
+    password = string
+  })
+
+  default = {
+    api_key  = "alice"
+    username = "alice"
+    password = "alice-pw"
+  }
+
+  sensitive = true
+}
+
 resource "konnect_gateway_consumer" "alex" {
   username         = "alex"
   control_plane_id = var.control_plane_tf_cp.id
@@ -36,21 +53,6 @@ resource "konnect_gateway_key_auth" "alex_keyauth" {
   control_plane_id = var.control_plane_tf_cp.id
 }
 
-variable "alice_credentials" {
-  type = object({
-    api_key  = string
-    username = string
-    password = string
-  })
-
-  default = {
-    api_key  = "alice"
-    username = "alice"
-    password = "alice-pw"
-  }
-
-  sensitive = true
-}
 
 variable "alex_credentials" {
   type = object({
