@@ -1,11 +1,13 @@
-name: Apply the plan
+name: Create a plan
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths-ignore:
       - '**/README.md'
+  # Allows to run this workflow manually
+  workflow_dispatch:
 
 jobs:
   create-plan:

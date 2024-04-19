@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: Apply changes
 
 on:
   push:
