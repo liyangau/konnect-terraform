@@ -2,6 +2,10 @@
 
 This repository serves as a demonstration of how to manage Kong Konnect resources declaratively using the [Konnect Terraform Provider](https://github.com/Kong/terraform-provider-konnect).
 
+## Caution
+
+**Caution:** This repository is currently in its early development phase. Expect frequent updates and potential changes to functionality as development progresses.
+
 ## Features
 
 - Utilizes an S3 bucket as a Terraform backend.
@@ -16,7 +20,3 @@ This repository serves as a demonstration of how to manage Kong Konnect resource
 - Utilizes GitHub Actions to enhance the development and deployment workflow:
   - Automatically generates `terraform plan` output as a comment on pull requests.
   - Applies changes to Kong Konnect upon merging, streamlining deployment processes.
-
-## Caution
-
-**Caution:** This repository is currently in its early development phase. Expect frequent updates and potential changes to functionality as development progresses.
