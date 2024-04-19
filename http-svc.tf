@@ -1,4 +1,3 @@
-# Configure a service and a route that we can use to test
 resource "konnect_gateway_service" "httpbin" {
   name             = "httpbin-svc"
   protocol         = "http"

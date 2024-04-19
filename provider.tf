@@ -1,11 +1,4 @@
 terraform {
-  # cloud {
-  #   organization = "fomm"
-
-  #   workspaces {
-  #     name = "fomm-au"
-  #   }
-  # }
   backend "s3" {
     bucket                      = "konnect-terraform"
     key                         = "konnect/prod"
