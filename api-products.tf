@@ -1,5 +1,5 @@
 resource "konnect_api_product" "httpbin" {
-  name        = "HTTPBin Product"
+  name        = "HTTPBin"
   description = "This is a description for my API Product"
 
   portal_ids = [
@@ -16,9 +16,8 @@ resource "konnect_api_product_version" "httpbin_v1" {
   }
 }
 
-
 resource "konnect_api_product" "echo" {
-  name        = "HTTPBin Product"
+  name        = "Echo"
   description = "This is a description for my API Product"
 
   portal_ids = [
