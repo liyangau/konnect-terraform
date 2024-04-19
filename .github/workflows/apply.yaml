@@ -41,7 +41,7 @@ jobs:
           TF_VAR_cp_region: "au"
           TF_VAR_exclude_mesh_control_plane: "true"
       - name: Terraform Apply
-        id: plan
+        id: apply
         if: github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
         continue-on-error: true
