@@ -1,14 +1,6 @@
 name: Create terraform plan
 
-on:
-  pull_request:
-    branches:
-      - main
-    paths-ignore:
-      - '**/README.md'
-
-  # Allows to run this workflow manually
-  workflow_dispatch:
+on: [issue_comment]
 
 permissions:
   contents: read
@@ -25,8 +17,10 @@ jobs:
       AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
       GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
+
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
