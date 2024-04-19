@@ -1,29 +1,71 @@
-name: Create terraform plan
+name: Pull Request Main
 
-on: [issue_comment]
-
-permissions:
-  contents: read
-  pull-requests: write
+on:
+  pull_request:
+    branches:
+      - main
+  # Allows to run this workflow manually
+  workflow_dispatch:
 
 jobs:
   plan:
     runs-on: ubuntu-latest
-    name: Create a plan for my konnect terraform module
-    env:
-      TF_VAR_system_token: ${{ secrets.KONNECT_AUTH_TOKEN }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
-      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: terraform plan
-        uses: dflook/terraform-plan@v1
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
         with:
-          variables: |
-            cp_region: au
-            exclude_mesh_control_plane: true
+          terraform_version: 1.8.0
+          terraform_wrapper: false
+            
+      - name: Terraform Init and Plan
+        id: plan
+        working-directory: ./
+        run: |
+          terraform init
+          plan_output=$(terraform plan -out plan.out -no-color)
+          echo "::set-output name=plan::${plan_output}"
+          echo "${plan_output}" > plan.txt
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
+          TF_VAR_system_token: ${{ secrets.KONNECT_AUTH_TOKEN }}
+
+      - name: Upload Terraform Plan out as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan
+          path: ./plan.out
+
+      - name: Comment PR with Terraform Plan
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const planOutput = fs.readFileSync('${{ github.workspace }}/plan.txt', 'utf8');
+            github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: "### Terraform Plan Output\n" + "```\n" + planOutput + "\n```"
+            });
+
+  ############################ RUN INKDROP ##################################
+  # This job will run Inkdrop using the plan generated in the previous job  #
+  ###########################################################################
+
+  inkdrop-run:
+    needs: plan
+    uses: inkdrop-org/inkdrop-visualizer/.github/workflows/inkdrop-plan.yml@main
+    with:
+      terraform_version: 1.8.0 # Mandatory
+      plan_artifact: plan
+      terraform_relative_dir: ./
+      plan_file_name: plan.out
+      # inkdrop_version: v1.1.13 # Defaults to latest
+      diagram_readme: true
+      modules_diagram_readme: true
