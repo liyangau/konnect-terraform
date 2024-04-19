@@ -1,6 +1,6 @@
 resource "konnect_gateway_route" "catch_all" {
-  name    = "catch-all-route"
-  paths   = ["/"]
+  name  = "catch-all-route"
+  paths = ["/"]
 
   strip_path = false
 
@@ -14,7 +14,7 @@ resource "konnect_gateway_plugin_request_termination" "catch_all_terminate" {
     id = konnect_gateway_route.catch_all.id
   }
   config = {
-    message = "🚧😮‍💨"
+    message     = "🚧😮‍💨"
     status_code = 503
   }
 }
