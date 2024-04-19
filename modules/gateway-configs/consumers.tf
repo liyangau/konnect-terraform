@@ -1,6 +1,6 @@
 resource "konnect_gateway_consumer" "alice" {
   username         = "alice"
-  control_plane_id = var.control_plane_tf_cp.id
+  control_plane_id = var.control_plane_dev.id
 }
 
 resource "konnect_gateway_basic_auth" "alice_basicauth" {
@@ -8,13 +8,13 @@ resource "konnect_gateway_basic_auth" "alice_basicauth" {
   password = var.alice_credentials.password
 
   consumer_id      = konnect_gateway_consumer.alice.id
-  control_plane_id = var.control_plane_tf_cp.id
+  control_plane_id = var.control_plane_dev.id
 }
 
 resource "konnect_gateway_key_auth" "alice_keyauth" {
   key              = var.alice_credentials.api_key
   consumer_id      = konnect_gateway_consumer.alice.id
-  control_plane_id = var.control_plane_tf_cp.id
+  control_plane_id = var.control_plane_dev.id
 }
 
 
@@ -36,7 +36,7 @@ variable "alice_credentials" {
 
 resource "konnect_gateway_consumer" "alex" {
   username         = "alex"
-  control_plane_id = var.control_plane_tf_cp.id
+  control_plane_id = var.control_plane_dev.id
 }
 
 resource "konnect_gateway_basic_auth" "alex_basicauth" {
@@ -44,13 +44,13 @@ resource "konnect_gateway_basic_auth" "alex_basicauth" {
   password = var.alex_credentials.password
 
   consumer_id      = konnect_gateway_consumer.alex.id
-  control_plane_id = var.control_plane_tf_cp.id
+  control_plane_id = var.control_plane_dev.id
 }
 
 resource "konnect_gateway_key_auth" "alex_keyauth" {
   key              = var.alex_credentials.api_key
   consumer_id      = konnect_gateway_consumer.alex.id
-  control_plane_id = var.control_plane_tf_cp.id
+  control_plane_id = var.control_plane_dev.id
 }
 
 

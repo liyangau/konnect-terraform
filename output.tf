@@ -1,9 +1,9 @@
-output "tf_cp_config" {
-  value = module.control-planes.tf_cp.config
+output "dev_config" {
+  value = module.control-planes.dev.config
 }
 
-output "tf_k8s_cp_config" {
-  value = module.control-planes.tf_k8s_cp.config
+output "home_cluster_config" {
+  value = module.control-planes.home_cluster.config
 }
 
 output "portal_domain" {

@@ -1,4 +1,4 @@
-variable "control_plane_tf_cp" {
+variable "control_plane_dev" {
   type        = any
 }
 

@@ -30,14 +30,14 @@ module "control-planes" {
 
 module "gateway-configs" {
   source = "./modules/gateway-configs"
-  control_plane_tf_cp = module.control-planes.tf_cp
+  control_plane_dev = module.control-planes.dev
   gateway_services_echo = module.gateway-configs.gateway_services_echo
   gateway_services_httpbin = module.gateway-configs.gateway_services_httpbin
 }
 
 module "dev-portal" {
   source = "./modules/dev-portal"
-  control_plane_tf_cp = module.control-planes.tf_cp
+  control_plane_dev = module.control-planes.dev
   gateway_services_echo = module.gateway-configs.gateway_services_echo
   gateway_services_httpbin = module.gateway-configs.gateway_services_httpbin
 }
