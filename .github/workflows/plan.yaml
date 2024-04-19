@@ -85,6 +85,7 @@ jobs:
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
+            const fs = require('fs');
             const planOutput = fs.readFileSync('${{ github.workspace }}/plan.txt', 'utf8');
             // 1. Retrieve existing bot comments for the PR
             const { data: comments } = await github.rest.issues.listComments({
