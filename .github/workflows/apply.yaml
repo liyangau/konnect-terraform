@@ -46,16 +46,32 @@ jobs:
           TF_VAR_system_token: ${{ secrets.KONNECT_SYSTEM_TOKEN }}
           TF_VAR_cp_region: "au"
           TF_VAR_exclude_mesh_control_plane: "true"
-      - name: Terraform Apply
-        id: apply
-        if: github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+      - name: Generate terraform output
+        id: output
+        run: terraform output -no-color -json > ./konnectTFOutput.json
         continue-on-error: false
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
           AWS_EC2_METADATA_DISABLED: true 
-          TF_VAR_system_token: ${{ secrets.KONNECT_SYSTEM_TOKEN }}
-          TF_VAR_cp_region: "au"
-          TF_VAR_exclude_mesh_control_plane: "true"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tf-output
+          path: ./konnectTFOutput.json
+          
+  update-tf-output-gist:
+    needs: apply-changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tf-output
+      - name: Upload to Gist
+        uses: exuanbo/actions-deploy-gist@v1.1.4
+        with:
+          token: ${{ secrets.GH_GIST_TOKEN }}
+          gist_id: ${{ secrets.GIST_ID }}
+          file_path: ./konnectTFOutput.json

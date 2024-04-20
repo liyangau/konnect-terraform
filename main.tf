@@ -24,20 +24,20 @@ provider "konnect" {
 }
 
 module "control-planes" {
-  source = "./modules/control-planes"
+  source                     = "./modules/control-planes"
   exclude_mesh_control_plane = var.exclude_mesh_control_plane
 }
 
 module "gateway-configs" {
-  source = "./modules/gateway-configs"
-  control_plane_dev = module.control-planes.dev
-  gateway_services_echo = module.gateway-configs.gateway_services_echo
+  source                   = "./modules/gateway-configs"
+  control_plane_dev        = module.control-planes.dev
+  gateway_services_echo    = module.gateway-configs.gateway_services_echo
   gateway_services_httpbin = module.gateway-configs.gateway_services_httpbin
 }
 
 module "dev-portal" {
-  source = "./modules/dev-portal"
-  control_plane_dev = module.control-planes.dev
-  gateway_services_echo = module.gateway-configs.gateway_services_echo
+  source                   = "./modules/dev-portal"
+  control_plane_dev        = module.control-planes.dev
+  gateway_services_echo    = module.gateway-configs.gateway_services_echo
   gateway_services_httpbin = module.gateway-configs.gateway_services_httpbin
 }
