@@ -34,11 +34,11 @@ jobs:
           AWS_EC2_METADATA_DISABLED: true 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color          
+        run: terraform validate -no-color     
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
-        continue-on-error: true
+        continue-on-error: false
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
