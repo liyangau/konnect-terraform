@@ -1,27 +1,12 @@
-resource "konnect_gateway_control_plane" "dev" {
-  name         = "dev"
+resource "konnect_gateway_control_plane" "cps" {
+  for_each = local.gateway_cps
+  name = each.key
   description  = "This is the first control plane created by terraform"
-  cluster_type = "CLUSTER_TYPE_CONTROL_PLANE"
+  cluster_type = each.value.type
   auth_type    = "pki_client_certs"
 
   labels = {
-    env         = "test"
+    Name = each.key
     provisioner = "terraform"
-  }
-}
-
-resource "konnect_gateway_control_plane" "home_cluster" {
-  name         = "home-cluster"
-  description  = "This is the K8S control plane created by terraform"
-  cluster_type = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
-  auth_type    = "pki_client_certs"
-
-  labels = {
-    env         = "test"
-    provisioner = "terraform"
-  }
-
-  lifecycle {
-    prevent_destroy = true
   }
 }

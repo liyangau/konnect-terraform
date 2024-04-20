@@ -9,3 +9,4 @@ variable "gateway_services_echo" {
 variable "gateway_services_httpbin" {
   type        = any
 }
+
