@@ -16,6 +16,9 @@ output "gateway_cps_endpoints" {
       dev = module.control-planes.dev.config
     },
     {
+      staging = module.control-planes.staging.config
+    },
+    {
       home_cluster = module.control-planes.home_cluster.config
     }
   ]
