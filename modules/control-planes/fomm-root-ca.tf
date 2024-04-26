@@ -4,7 +4,7 @@
 # }
 ###
 
-resource "konnect_gateway_data_plane_client_certificate" "fomm_root_ca" {
+resource "konnect_gateway_data_plane_client_certificate" "fomm_rsa_root_ca" {
   for_each = konnect_gateway_control_plane.cps
   ### In case we need to exclude some CPs
   # for_each = {
