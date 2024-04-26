@@ -1,7 +1,3 @@
-variable "exclude_mesh_control_plane" {
-  type = bool
-}
-
 locals {
   gateway_cps = {
     "dev" = {

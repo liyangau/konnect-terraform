@@ -13,7 +13,7 @@ terraform {
   required_providers {
     konnect = {
       source  = "Kong/konnect"
-      version = "0.2.0"
+      version = "0.2.1"
     }
   }
 }
@@ -25,7 +25,6 @@ provider "konnect" {
 
 module "control-planes" {
   source                     = "./modules/control-planes"
-  exclude_mesh_control_plane = var.exclude_mesh_control_plane
 }
 
 module "gateway-configs" {
