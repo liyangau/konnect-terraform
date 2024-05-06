@@ -87,3 +87,7 @@ jobs:
           token: ${{ secrets.GH_GIST_TOKEN }}
           gist_id: ${{ secrets.GIST_ID }}
           file_path: ./konnectTFOutput.json
+      - name: Delete TF output from artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: tf-output
