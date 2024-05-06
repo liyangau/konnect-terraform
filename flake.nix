@@ -28,7 +28,7 @@
         { pkgs }:
         {
           default = pkgs.mkShellNoCC {
-            packages = with pkgs; [ terraform ];
+            packages = with pkgs; [ opentofu ];
             shellHook = ''
               export TF_VAR_cp_region=au
             '';
