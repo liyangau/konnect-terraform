@@ -13,19 +13,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
         with:
-          terraform_version: 1.8.0
-          terraform_wrapper: false
-      - name: Terraform fmt
+          tofu_version: 1.7.0
+          tofu_wrapper: false
+      - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: tofu fmt -check
         continue-on-error: true
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: tofu init
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -33,10 +32,10 @@ jobs:
           AWS_EC2_METADATA_DISABLED: true
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: tofu validate -no-color
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run: tofu plan -no-color
         continue-on-error: false
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -49,7 +48,7 @@ jobs:
       - name: Terraform Apply
         id: apply
         if: github.event_name == 'push'
-        run: terraform apply -no-color -auto-approve -input=false
+        run: tofu apply -no-color -auto-approve -input=false
         continue-on-error: false
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -61,7 +60,7 @@ jobs:
           TF_VAR_exclude_mesh_control_plane: "true"
       - name: Generate terraform output
         id: output
-        run: terraform output -no-color -json > ./konnectTFOutput.json
+        run: tofu output -no-color -json > ./konnectTFOutput.json
         continue-on-error: false
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

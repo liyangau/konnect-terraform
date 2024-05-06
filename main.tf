@@ -24,7 +24,7 @@ provider "konnect" {
 }
 
 module "control-planes" {
-  source                     = "./modules/control-planes"
+  source = "./modules/control-planes"
 }
 
 module "gateway-configs" {
