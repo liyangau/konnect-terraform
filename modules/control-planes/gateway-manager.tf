@@ -1,12 +1,9 @@
 resource "konnect_gateway_control_plane" "cps" {
-  for_each = local.gateway_cps
-  name = each.key
-  description  = "This is the first control plane created by terraform"
+  for_each = local.control_plane_with_labels
+  name = each.value.name
   cluster_type = each.value.type
-  auth_type    = "pki_client_certs"
-
-  labels = {
-    Name = each.key
-    provisioner = "terraform"
-  }
+  cloud_gateway = each.value.cloud_gateway
+  auth_type    = each.value.auth_type
+  labels = each.value.labels
+  description = each.value.description
 }

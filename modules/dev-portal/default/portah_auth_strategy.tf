@@ -28,21 +28,3 @@ resource "konnect_application_auth_strategy" "oidc" {
   }
 }
 
-resource "konnect_portal" "my_portal" {
-  portal_id                            = data.konnect_portal_list.my_portallist.data[0].id
-  auto_approve_applications            = false
-  auto_approve_developers              = false
-  custom_domain                        = "portal.aufomm.com"
-  is_public                            = false
-  rbac_enabled                         = false
-  default_application_auth_strategy_id = konnect_application_auth_strategy.keyauth.id
-
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
-}
-
-data "konnect_portal_list" "my_portallist" {
-  page_number = 1
-  page_size   = 1
-}

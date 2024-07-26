@@ -4,7 +4,7 @@ resource "konnect_gateway_service" "httpbin" {
   host             = "httpbin"
   port             = 8080
   path             = "/"
-  control_plane_id = var.control_plane_dev.id
+  control_plane_id = var.control_plane.id
 }
 
 resource "konnect_gateway_route" "httpbin" {
@@ -14,7 +14,7 @@ resource "konnect_gateway_route" "httpbin" {
 
   strip_path = false
 
-  control_plane_id = var.control_plane_dev.id
+  control_plane_id = var.control_plane.id
 
   service = {
     id = konnect_gateway_service.httpbin.id
@@ -23,7 +23,7 @@ resource "konnect_gateway_route" "httpbin" {
 
 resource "konnect_gateway_plugin_basic_auth" "basic_auth" {
   enabled          = true
-  control_plane_id = var.control_plane_dev.id
+  control_plane_id = var.control_plane.id
   service = {
     id = konnect_gateway_service.httpbin.id
   }

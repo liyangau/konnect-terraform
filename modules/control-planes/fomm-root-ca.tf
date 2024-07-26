@@ -5,13 +5,17 @@
 ###
 
 resource "konnect_gateway_data_plane_client_certificate" "fomm_rsa_root_ca" {
-  for_each = konnect_gateway_control_plane.cps
+  # for_each = konnect_gateway_control_plane.cps
   ### In case we need to exclude some CPs
   # for_each = {
   #   for k, v in konnect_gateway_control_plane.cps : k => v
   #   if !contains(local.excluded_names, v.name)
   # }
   ###
+  for_each = {
+    for name, cp in konnect_gateway_control_plane.cps :
+    name => cp if cp.auth_type == "pki_client_certs"
+  }
   cert = <<-EOF
 -----BEGIN CERTIFICATE-----
 MIIF6zCCA9OgAwIBAgIUHQlIjxxhwJEpa+bpHMbGcrJdh2UwDQYJKoZIhvcNAQEL

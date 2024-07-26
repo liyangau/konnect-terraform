@@ -4,7 +4,7 @@ This repository serves as a demonstration of how to manage Kong Konnect resource
 
 ## Caution
 
-**Caution:** This repository is currently in its early development phase. Expect frequent updates and potential changes to functionality as development progresses.
+**Caution:** This repository is currently in its early development phase. Expect updates and breaking changes to functionality as development progresses.
 
 ## Features
 
