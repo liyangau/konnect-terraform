@@ -14,7 +14,7 @@ locals {
       type = "CLUSTER_TYPE_CONTROL_PLANE"
     },
     home_cluster = {
-      name        = "home-cluster"
+      name        = "k8s-cluster"
       type        = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
       description = "KIC running on homelabe cluster"
     },
@@ -32,14 +32,14 @@ locals {
     },
   }
   networks = {
-    demo_au = {
-      allowed_cidr_blocks = [
-        "0.0.0.0/0"
-      ]
-      cidr_block      = "10.10.0.0/16"
-      ddos_protection = false
-      region          = "ap-southeast-2"
-    }
+    # dev_au = {
+    #   allowed_cidr_blocks = [
+    #     "0.0.0.0/0"
+    #   ]
+    #   cidr_block      = "10.10.0.0/16"
+    #   ddos_protection = false
+    #   region          = "ap-southeast-2"
+    # }
     # dev_sg = {
     #   allowed_cidr_blocks = [
     #     "0.0.0.0/0"
