@@ -32,7 +32,7 @@ locals {
     },
   }
   networks = {
-    dev_au = {
+    demo_au = {
       allowed_cidr_blocks = [
         "0.0.0.0/0"
       ]
