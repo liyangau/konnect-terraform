@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket                      = "konnect-terraform"
-    key                         = "konnect/prod"
+    key                         = "konnect/gha"
     skip_credentials_validation = true
     skip_region_validation      = true
     skip_requesting_account_id  = true
