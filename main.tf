@@ -62,10 +62,10 @@ module "kong-configs-dev-au-cloud" {
   control_plane = module.control-planes.cps["dev_au_cloud"]
 }
 
-module "default-dev-portal" {
-  source                   = "./modules/dev-portal/default"
-  control_plane            = module.control-planes.cps["demo"]
-  gateway_services_echo    = module.kong-configs-demo.gateway_services_echo
-  gateway_services_httpbin = module.kong-configs-demo.gateway_services_httpbin
-  dev_portal_id            = konnect_portal.default_portal.id
-}
+# module "default-dev-portal" {
+#   source                   = "./modules/dev-portal/default"
+#   control_plane            = module.control-planes.cps["demo"]
+#   gateway_services_echo    = module.kong-configs-demo.gateway_services_echo
+#   gateway_services_httpbin = module.kong-configs-demo.gateway_services_httpbin
+#   dev_portal_id            = konnect_portal.default_portal.id
+# }
