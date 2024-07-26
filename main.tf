@@ -52,15 +52,15 @@ module "cloud-gateways" {
   network_id         = each.value.network_id
 }
 
-module "kong-configs-demo" {
-  source        = "./modules/kong-configs/demo"
-  control_plane = module.control-planes.cps["demo"]
-}
+# module "kong-configs-demo" {
+#   source        = "./modules/kong-configs/demo"
+#   control_plane = module.control-planes.cps["demo"]
+# }
 
-module "kong-configs-dev-au-cloud" {
-  source        = "./modules/kong-configs/dev_au_cloud"
-  control_plane = module.control-planes.cps["dev_au_cloud"]
-}
+# module "kong-configs-dev-au-cloud" {
+#   source        = "./modules/kong-configs/dev_au_cloud"
+#   control_plane = module.control-planes.cps["dev_au_cloud"]
+# }
 
 # module "default-dev-portal" {
 #   source                   = "./modules/dev-portal/default"

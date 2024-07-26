@@ -1,35 +1,35 @@
 locals {
   control_planes = {
-    demo = {
-      name = "demo"
-      type = "CLUSTER_TYPE_CONTROL_PLANE"
-      labels = {
-        environment = "demo"
-        team        = "devops"
-      }
-      description = "Control plane used by dev team"
-    },
-    staging = {
-      name = "staging"
-      type = "CLUSTER_TYPE_CONTROL_PLANE"
-    },
-    home_cluster = {
-      name        = "k8s-cluster"
-      type        = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
-      description = "KIC running on homelabe cluster"
-    },
-    dev_au_cloud = {
-      name          = "dev-au-cloud"
-      type          = "CLUSTER_TYPE_CONTROL_PLANE"
-      auth_type     = "pinned_client_certs"
-      cloud_gateway = true
-      labels = {
-        environment = "cloud"
-        team        = "devops"
-        region      = "au"
-      }
-      description = "Control plane in AU used by cloud devops team"
-    },
+    # demo = {
+    #   name = "demo"
+    #   type = "CLUSTER_TYPE_CONTROL_PLANE"
+    #   labels = {
+    #     environment = "demo"
+    #     team        = "devops"
+    #   }
+    #   description = "Control plane used by dev team"
+    # },
+    # staging = {
+    #   name = "staging"
+    #   type = "CLUSTER_TYPE_CONTROL_PLANE"
+    # },
+    # home_cluster = {
+    #   name        = "k8s-cluster"
+    #   type        = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
+    #   description = "KIC running on homelabe cluster"
+    # },
+    # dev_au_cloud = {
+    #   name          = "dev-au-cloud"
+    #   type          = "CLUSTER_TYPE_CONTROL_PLANE"
+    #   auth_type     = "pinned_client_certs"
+    #   cloud_gateway = true
+    #   labels = {
+    #     environment = "cloud"
+    #     team        = "devops"
+    #     region      = "au"
+    #   }
+    #   description = "Control plane in AU used by cloud devops team"
+    # },
   }
   networks = {
     # dev_au = {
