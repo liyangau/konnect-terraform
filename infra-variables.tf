@@ -50,16 +50,16 @@ locals {
     # }
   }
   cloud_gateways = {
-    dev_au = {
-      region             = "ap-southeast-2"
-      custom_domain      = "proxy.fomm.au"
-      api_access         = "private+public"
-      control_plane_geo  = "au"
-      control_plane_name = "dev_au_cloud"
-      control_plane_id   = module.control-planes.cps["dev_au_cloud"].id
-      kong_version       = "3.7"
-      network_id         = module.networks["dev_au"].id
-    }
+    # dev_au = {
+    #   region             = "ap-southeast-2"
+    #   custom_domain      = "proxy.fomm.au"
+    #   api_access         = "private+public"
+    #   control_plane_geo  = "au"
+    #   control_plane_name = "dev_au_cloud"
+    #   control_plane_id   = module.control-planes.cps["dev_au_cloud"].id
+    #   kong_version       = "3.7"
+    #   network_id         = module.networks["dev_au"].id
+    # }
   }
   transit_gateways = {
     # dev_au = {
