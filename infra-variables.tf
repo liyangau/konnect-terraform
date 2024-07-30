@@ -32,14 +32,14 @@ locals {
     # },
   }
   networks = {
-    dev_au = {
-      allowed_cidr_blocks = [
-        "0.0.0.0/0"
-      ]
-      cidr_block      = "10.10.0.0/16"
-      ddos_protection = false
-      region          = "ap-southeast-2"
-    }
+    # dev_au = {
+    #   allowed_cidr_blocks = [
+    #     "0.0.0.0/0"
+    #   ]
+    #   cidr_block      = "10.10.0.0/16"
+    #   ddos_protection = false
+    #   region          = "ap-southeast-2"
+    # }
     # dev_sg = {
     #   allowed_cidr_blocks = [
     #     "0.0.0.0/0"
