@@ -18,18 +18,18 @@ locals {
     #   type        = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
     #   description = "KIC running on homelabe cluster"
     # },
-    # dev_au_cloud = {
-    #   name          = "dev-au-cloud"
-    #   type          = "CLUSTER_TYPE_CONTROL_PLANE"
-    #   auth_type     = "pinned_client_certs"
-    #   cloud_gateway = true
-    #   labels = {
-    #     environment = "cloud"
-    #     team        = "devops"
-    #     region      = "au"
-    #   }
-    #   description = "Control plane in AU used by cloud devops team"
-    # },
+    dev_au_cloud = {
+      name          = "dev-au-cloud"
+      type          = "CLUSTER_TYPE_CONTROL_PLANE"
+      auth_type     = "pinned_client_certs"
+      cloud_gateway = true
+      labels = {
+        environment = "cloud"
+        team        = "devops"
+        region      = "au"
+      }
+      description = "Control plane in AU used by cloud devops team"
+    },
   }
   networks = {
     dev_au = {
