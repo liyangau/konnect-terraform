@@ -16,7 +16,7 @@ resource "konnect_cloud_gateway_configuration" "cgw_dp" {
 
         configuration_data_plane_group_autoscale_static = {
           kind     = "static"
-          instance_type = "medium"
+          instance_type = "small"
           requested_instances = 1
         }
       }
